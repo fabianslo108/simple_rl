@@ -18,7 +18,9 @@ class BanditMDP(MDP):
 
     ACTIONS = []
 
-    def __init__(self, num_arms=10, distr_family=np.random.normal, distr_params=None):
+    def __init__(self, num_arms=10,
+                distr_family=np.random.normal,
+                distr_params=None):
         '''
         Args:
             num_arms (int): Number of arms.
@@ -28,7 +30,10 @@ class BanditMDP(MDP):
                 distribution are initialized randomly.
         '''
         BanditMDP.ACTIONS = [str(i) for i in range(1, num_arms + 1)]
-        MDP.__init__(self, BanditMDP.ACTIONS, self._transition_func, self._reward_func, init_state=State(1), gamma=1.0)
+        MDP.__init__(self, BanditMDP.ACTIONS,
+                    self._transition_func,
+                    self._reward_func,
+                    init_state=State(1), gamma=1.0)
         self.num_arms = num_arms
         self.distr_family = distr_family
         self.distr_params = self.init_distr_params() if distr_params is None else distr_params    
